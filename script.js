@@ -20,13 +20,16 @@ let startButton=document.getElementById('start');
 let closedDoorpath='https://s3.amazonaws.com/codecademy-content/projects/chore-door/images/closed_door.svg';
 
 
+let currentlyPlaying=true;
+
+
 
 imagedoor1.onclick=()=>{
 
 
-    if(isClicked(imagedoor1)===false){
+    if(currentlyPlaying===true &&  isClicked(imagedoor1)===false){
       imagedoor1.src=openDoor1;
-      playgame();
+      playgame(imagedoor1);
     }
 
 };
@@ -34,9 +37,9 @@ imagedoor1.onclick=()=>{
 
 imagedoor2.onclick=()=>{
 
-    if(isClicked(imagedoor2)===false){
+    if(currentlyPlaying===true && isClicked(imagedoor2)===false){
       imagedoor2.src=openDoor2;
-      playgame();
+      playgame(imagedoor2);
     }
 
 };
@@ -44,9 +47,9 @@ imagedoor2.onclick=()=>{
 
 imagedoor3.onclick=()=>{
 
-    if(isClicked(imagedoor3)===false){
+    if(currentlyPlaying===true && isClicked(imagedoor3)===false){
       imagedoor3.src=openDoor3;
-      playgame();
+      playgame(imagedoor3);
     }
 };
 
@@ -97,6 +100,8 @@ function isClicked(door){
 }
 
 
+
+
 function gameover(status){
 
     if(status==='win'){
@@ -104,15 +109,24 @@ function gameover(status){
         startButton.innerHTML="You Win! play Again?"
 
     }
+    else if(status==='lose'){
+
+        startButton.innerHTML="You Lose! want to play again?"
+    }
+
+    currentlyPlaying=false;
 
 
 
 }
 
 
-function playgame()
+function playgame(door)
 {
 
+    if(door.src===botDoorPath){
+        gameover('lose');
+    }
 
     numClosedDoor--;
 
