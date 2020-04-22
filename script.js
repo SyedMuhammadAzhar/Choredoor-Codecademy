@@ -17,29 +17,37 @@ let openDoor3;
 
 let startButton=document.getElementById('start');
 
+let closedDoorpath='https://s3.amazonaws.com/codecademy-content/projects/chore-door/images/closed_door.svg';
+
+
+
 imagedoor1.onclick=()=>{
 
 
-    imagedoor1.src=openDoor1;
-    playgame();
+    if(isClicked(imagedoor1)===false){
+      imagedoor1.src=openDoor1;
+      playgame();
+    }
 
 };
 
 
 imagedoor2.onclick=()=>{
 
-
-    imagedoor2.src=openDoor2;
-    playgame();
+    if(isClicked(imagedoor2)===false){
+      imagedoor2.src=openDoor2;
+      playgame();
+    }
 
 };
 
 
 imagedoor3.onclick=()=>{
 
-
-    imagedoor3.src=openDoor3;
-    playgame();
+    if(isClicked(imagedoor3)===false){
+      imagedoor3.src=openDoor3;
+      playgame();
+    }
 };
 
 
@@ -71,6 +79,23 @@ function randomChoreDoorgenerator(){
 
 
 }
+
+
+
+
+function isClicked(door){
+
+    if(door.src===closedDoorpath){
+        return false;
+
+    }
+    else{
+        return true;
+    }
+
+
+}
+
 
 function gameover(status){
 
