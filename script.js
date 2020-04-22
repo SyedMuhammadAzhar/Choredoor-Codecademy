@@ -54,6 +54,30 @@ imagedoor3.onclick=()=>{
 };
 
 
+startButton.onclick=()=>{
+
+    if(currentlyPlaying===false){
+    startRound();
+    }
+};
+
+
+    function startRound(){
+    
+
+        imagedoor1.src=closedDoorpath;
+        imagedoor2.src=closedDoorpath;
+        imagedoor3.src=closedDoorpath;
+        startButton.innerHTML="Good Luck!"
+        numClosedDoor=3;
+        currentlyPlaying=true;
+        randomChoreDoorgenerator();
+        
+
+
+}
+
+
 function randomChoreDoorgenerator(){
 
     let choreNum=Math.floor(Math.random()*numClosedDoor);
@@ -124,9 +148,7 @@ function gameover(status){
 function playgame(door)
 {
 
-    if(door.src===botDoorPath){
-        gameover('lose');
-    }
+  
 
     numClosedDoor--;
 
@@ -135,10 +157,13 @@ function playgame(door)
         gameover('win');
 
     }
+    else if(door.src===botDoorPath){
+        gameover('lose');
+    }
 
 
 
 }
 
 
-randomChoreDoorgenerator();
+startRound();
